@@ -7,6 +7,9 @@ import { HelloWorldComponent } from './hello-world/hello-world.component';
 import { HomeModule } from './home/home.module';
 import { ExLayoutModule } from './ex-layout/ex-layout.module';
 import { DataBindingModule } from './data-binding/data-binding.module';
+import { DirectivesModule } from './directives/directives.module';
+import { ExProductsModule } from './ex-products/ex-products.module';
+import { InteractionModule } from './interaction/interaction.module';
 
 // Typescript decorator
 // Khi có khai báo @NgModule nghĩa là đây là 1 module của angular
@@ -23,7 +26,10 @@ import { DataBindingModule } from './data-binding/data-binding.module';
     BrowserModule,
     HomeModule,
     ExLayoutModule,
-    DataBindingModule
+    DataBindingModule,
+    DirectivesModule,
+    ExProductsModule,
+    InteractionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
