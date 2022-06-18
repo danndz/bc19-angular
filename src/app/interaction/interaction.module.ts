@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { InteractionComponent } from './interaction.component';
 import { ProductDetailComponent } from './product-detail.component';
 import { ProductListComponent } from './product-list.component';
+import { ToggleComponent } from './toggle.component';
 import { WelcomeComponent } from './welcome.component';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { WelcomeComponent } from './welcome.component';
     WelcomeComponent,
     ProductListComponent,
     ProductDetailComponent,
+    ToggleComponent,
   ],
 })
 export class InteractionModule {}

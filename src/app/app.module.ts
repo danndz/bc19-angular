@@ -10,6 +10,8 @@ import { DataBindingModule } from './data-binding/data-binding.module';
 import { DirectivesModule } from './directives/directives.module';
 import { ExProductsModule } from './ex-products/ex-products.module';
 import { InteractionModule } from './interaction/interaction.module';
+import { ExBusTicketModule } from './ex-bus-ticket/ex-bus-ticket.module';
+import { ContentProjectionModule } from './content-projection/content-projection.module';
 
 // Typescript decorator
 // Khi có khai báo @NgModule nghĩa là đây là 1 module của angular
@@ -30,6 +32,8 @@ import { InteractionModule } from './interaction/interaction.module';
     DirectivesModule,
     ExProductsModule,
     InteractionModule,
+    ExBusTicketModule,
+    ContentProjectionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
