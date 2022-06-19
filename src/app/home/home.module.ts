@@ -5,11 +5,12 @@ import { NgModule } from '@angular/core';
 import { ContentComponent } from './content.component';
 import { FooterComponent } from './footer.component';
 import { HeaderComponent } from './header.component';
+import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { SidebarComponent } from './sidebar.component';
 
 @NgModule({
-  imports: [],
+  imports: [HomeRoutingModule],
   // Khai báo các components do HomeModule quản lý
   declarations: [
     HeaderComponent,

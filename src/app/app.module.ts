@@ -12,6 +12,10 @@ import { ExProductsModule } from './ex-products/ex-products.module';
 import { InteractionModule } from './interaction/interaction.module';
 import { ExBusTicketModule } from './ex-bus-ticket/ex-bus-ticket.module';
 import { ContentProjectionModule } from './content-projection/content-projection.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { AppRoutingModule } from './app-routing.module';
+// import { ExArticleModule } from './ex-article/ex-article.module';
 
 // Typescript decorator
 // Khi có khai báo @NgModule nghĩa là đây là 1 module của angular
@@ -26,6 +30,8 @@ import { ContentProjectionModule } from './content-projection/content-projection
   // HomeModule có các components như: Header, Sidebar, Content, Footer. Nếu AppComponent muốn sử dụng các component này thì AppModule cần import HomeModule và khai báo trong mảng imports
   imports: [
     BrowserModule,
+    AppRoutingModule,
+
     HomeModule,
     ExLayoutModule,
     DataBindingModule,
@@ -34,6 +40,11 @@ import { ContentProjectionModule } from './content-projection/content-projection
     InteractionModule,
     ExBusTicketModule,
     ContentProjectionModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
+
+    // Không import trực tiếp để có thế sử dụng cơ chế lazyload
+    // ExArticleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
