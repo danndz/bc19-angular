@@ -1,0 +1,134 @@
+// snippet: a-service
+
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Movies } from '../models/movie.interface';
+
+const DATA = [
+  {
+    maPhim: 8902,
+    tenPhim: 'DOCTOR STRANGE IN THE MULTIVERSE OF MADNESS ',
+    biDanh: 'doctor-strange-in-the-multiverse-of-madness',
+    trailer: 'https://www.youtube.com/embed/Rf8LAYJSOL8',
+    hinhAnh:
+      'https://movienew.cybersoft.edu.vn/hinhanh/doctor-strange-in-the-multiverse-of-madness_gp01.jpg',
+    moTa: 'Trailer mới Doctor Strange In The Multiverse Of Madness hé lộ một nhân vật bí ẩn dường như là giáo sư X phiên bản già Patrick Stewart. Cả giáo sư X phiên bản trẻ (James McAvoy) và Jean Grey (Sophie Turner) đều có tin xuất hiện ở phim trường Phù Thủy Tối Thượng Trong Đa Vũ Trụ Hỗn Loạn. Đặc biệt nhất là lời đồn không tưởng về việc Tom Cruise sẽ trở thành Iron Man mới đang lan truyền rộng rãi.',
+    maNhom: 'GP01',
+    ngayKhoiChieu: '2022-06-24T05:59:32.487',
+    danhGia: 10,
+    hot: false,
+    dangChieu: true,
+    sapChieu: false,
+  },
+  {
+    maPhim: 8909,
+    tenPhim: 'JURASSIC WORLD DOMINION  ',
+    biDanh: 'jurassic-world-dominion',
+    trailer: 'https://www.youtube.com/embed/3y0KM5jUnmk',
+    hinhAnh:
+      'https://movienew.cybersoft.edu.vn/hinhanh/jurassic-world-dominion_gp01.jpg',
+    moTa: 'Bốn năm sau kết thúc Jurassic World: Fallen Kingdom, những con khủng long đã thoát khỏi nơi giam cầm và tiến vào thế giới loài người. Giờ đây, chúng xuất hiện ở khắp mọi nơi. Sinh vật to lớn ấy không còn chỉ ở trên đảo như trước nữa mà gần ngay trước mắt, thậm chí còn có thể chạm tới ',
+    maNhom: 'GP01',
+    ngayKhoiChieu: '2022-05-10T00:00:00',
+    danhGia: 8,
+    hot: false,
+    dangChieu: false,
+    sapChieu: true,
+  },
+  {
+    maPhim: 9001,
+    tenPhim: 'PHI CÔNG SIÊU ĐẲNG MAVERICK  ',
+    biDanh: 'phi-cong-sieu-dang-maverick',
+    trailer: 'https://www.youtube.com/embed/ZR99nOkEolM',
+    hinhAnh:
+      'https://movienew.cybersoft.edu.vn/hinhanh/phi-cong-sieu-dang-maverick_gp01.jpg',
+    moTa: 'Pete “Maverick” Mitchell từng nổi danh là một phi công thử nghiệm quả cảm hàng đầu của Hải quân. Sau hơn ba mươi năm phục vụ, anh né tránh cơ hội thăng chức khiến bản thân cảm thấy bị bó buộc, để trở về làm chính mình - một đại úy. Trong đợt đào tạo biệt đội tại trường quân sự Top Gun cho nhiệm vụ chuyên biệt chưa từng có, Maverick chạm trán với Trung úy Bradley Bradshaw (Miles Teller) - con trai của người bạn thân quá cố Nick Bradshaw.   Với nhiệm vụ lần này, không chỉ đối mặt với những thử thách nguy hiểm đến tính mạng, Pete Mitchell còn đối mặt với bóng ma quá khứ, nỗi sợ hãi sâu thẳm trong thâm tâm. Xem thêm tại: https://www.galaxycine.vn/dat-ve/top-gun-maverick  Xem thêm tại: https://www.galaxycine.vn/dat-ve/top-gun-maverick',
+    maNhom: 'GP01',
+    ngayKhoiChieu: '2022-05-09T00:00:00',
+    danhGia: 8,
+    hot: true,
+    dangChieu: true,
+    sapChieu: false,
+  },
+];
+
+// Injectable thông báo cho angular biết class MovieService là 1 service
+// Nó sẽ giúp cho angular biết là sẽ tạo ra instance của class MovieService khi có một component nào đó request tới class MovieService
+@Injectable({
+  // Cho angular biết chỉ có duy nhất 1 instance của MovieService sẽ được sử dụng cho toàn bộ app
+  providedIn: 'root',
+})
+export class MovieService {
+  constructor() {}
+
+  // Thường service trong angular được dùng để viết các function sẽ được sử dụng bên trong các component, thường là những hàm để gọi API
+  // getMovieList(): Movies {
+  //   return DATA
+  // }
+
+  // Rxjs concepts
+  // Observable: đại diện cho một tập hợp các giá trị hoặc sự kiện trong tương lai. Khi các giá trị hoặc sự kiện được phát sinh trong tương lai, Observable sẽ điều phối nó đến Observer
+  // Observer: là một tập hợp các callbacks sẽ lắng nghe các giá trị (next, error, compelete) được gửi đến từ Observable
+  getMovieList(): Observable<Movies> {
+    // Để tạo ra một Observable
+    return new Observable((observer) => {
+      // Xử lý fake request API
+      setTimeout(() => {
+        // Điều phối giá trị đến Observer
+        observer.next(DATA);
+
+        // Throw javascript error
+        // observer.error("Not Found")
+
+        // Kết thúc Observable
+        observer.complete();
+      }, 3000);
+    });
+  }
+}
+
+// Component request tới Service
+/**
+ * import {MovieService} form '../MovieService'
+ * export class MovieComponent {
+ *  constructor(private movieService: MovieService)
+ * }
+ */
+
+// // Service trong angular hoạt động đựa vào một design pattern: Depedencies Injection
+
+// // Ví dụ về Depedencies Injection
+// class Cart {
+//   selectedProducts: any[] = [];
+
+//   addToCart() {
+//     // do something here
+//   }
+
+//   calcTotalPrice() {
+//     // do something here
+//   }
+// }
+// // class Product đang bị depend (phụ thuộc) vào class Cart, nếu trong trường hợp ta cần thay đổi logic của class Cart thì ta cũng cần phần sửa code của class Product và test lại cả 2 class để đảm bảo logic vẫn được thực thi đúng ở cả 2 class
+// // class Product {
+// //   cartService: Cart;
+// //   constructor() {
+// //     this.cartService = new Cart();
+// //   }
+// // }
+
+// // Thay vì khởi tạo instance của class Cart trực tiếp bên trong class Product, ta sẽ gửi yêu cầu để lấy về instance của class Cart (Injection)
+// class Product {
+//   cartService: Cart;
+//   constructor(cartService: Cart) {
+//     this.cartService = cartService;
+//   }
+// }
+
+// // Ở đâu đó trong ứng dụng, sẽ có một nơi để khởi tạo các đối tượng và nhúng (inject) các phụ thuộc vào trong các đối tượng
+// function container() {
+//   const cartService = new Cart();
+//   // const cartService = new CartNew();
+
+//   const product = new Product(cartService);
+// }

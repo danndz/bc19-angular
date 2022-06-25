@@ -27,6 +27,11 @@ const routes: Routes = [
     path: 'pipe',
     loadChildren: () => import('./pipe/pipe.module').then((m) => m.PipeModule),
   },
+  {
+    path: 'movies',
+    loadChildren: () =>
+      import('./ex-movie/ex-movie.module').then((m) => m.ExMovieModule),
+  },
 ];
 
 @NgModule({
