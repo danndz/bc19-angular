@@ -1,6 +1,7 @@
 // File gốc để setup router cho ứng dụng angular
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CheckoutGuard } from './core/guards/checkout.guard';
 
 // import { HomeComponent } from './home/home.component';
 // import { ExBusTicketComponent } from './ex-bus-ticket/ex-bus-ticket.component';
@@ -31,6 +32,18 @@ const routes: Routes = [
     path: 'movies',
     loadChildren: () =>
       import('./ex-movie/ex-movie.module').then((m) => m.ExMovieModule),
+  },
+  {
+    path: 'checkout',
+    canActivate: [CheckoutGuard],
+    loadChildren: () =>
+      import('./ex-checkout/ex-checkout.module').then(
+        (m) => m.ExCheckoutModule
+      ),
+  },
+  {
+    path: '',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
 ];
 
